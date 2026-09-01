@@ -1,0 +1,16 @@
+# Entornos virtuales
+.venv/
+env/
+__pycache__/
+
+# Compilación de Python
+*.py[cod]
+*$py.class
+
+# Configuración del IDE
+.vscode/
+.idea/
+
+# Reportes generados de prueba o logs locales
+*.log
+*.pdf

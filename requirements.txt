@@ -1,0 +1,8 @@
+PyQt6==6.6.1
+PyQtGraph==0.13.7
+scapy==2.5.0
+python-nmap==0.7.1
+dnspython==2.6.0
+paramiko==3.4.0
+requests==2.31.0
+reportlab==4.1.0
