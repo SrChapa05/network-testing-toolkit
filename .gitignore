@@ -1,16 +1,11 @@
-# Entornos virtuales
+# Python
 .venv/
-env/
 __pycache__/
+*.pyc
 
-# Compilación de Python
-*.py[cod]
-*$py.class
+# Node / React
+frontend/node_modules/
+frontend/dist/
 
-# Configuración del IDE
-.vscode/
-.idea/
-
-# Reportes generados de prueba o logs locales
-*.log
-*.pdf
+# Sistema
+.DS_Store
