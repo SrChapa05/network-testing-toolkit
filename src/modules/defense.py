@@ -16,5 +16,10 @@ def generar_recomendaciones():
         print(f" [+] {rec}")
     print("=" * 50)
 
-if __name__ == "__main__":
+def run(param=""):
+    """Función estándar requerida para la integración en la interfaz Tkinter."""
     generar_recomendaciones()
+
+if __name__ == "__main__":
+    # Permite ejecutar el script de forma independiente por consola
+    run()

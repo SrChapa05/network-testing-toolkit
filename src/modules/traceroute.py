@@ -32,7 +32,15 @@ def ejecutar_traceroute(destino):
     except Exception as e:
         print(f"[-] Error al ejecutar traceroute: {e}")
 
+def run(param):
+    """Función estándar requerida para la integración en la interfaz Tkinter."""
+    if not param:
+        param = "google.com"
+        
+    # Limpiamos el objetivo por si el usuario introduce una URL completa con protocolo
+    destino = param.replace("https://", "").replace("http://", "").split("/")[0].strip()
+    ejecutar_traceroute(destino)
+
 if __name__ == "__main__":
-    # Objetivo de prueba (pueden cambiarlo por una IP o dominio)
-    objetivo = "google.com"
-    ejecutar_traceroute(objetivo)
+    # Permite seguir ejecutando el script de forma independiente por consola
+    run("google.com")

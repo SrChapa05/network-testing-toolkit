@@ -35,6 +35,12 @@ def revisar_cabeceras(url):
     except Exception as e:
         print(f"[-] Ocurrió un error inesperado: {e}")
 
+def run(param):
+    """Función estándar requerida para la integración en la interfaz Tkinter."""
+    if not param:
+        param = "google.com"
+    revisar_cabeceras(param)
+
 if __name__ == "__main__":
-    # Probamos con un objetivo conocido
-    revisar_cabeceras("google.com")
+    # Permite ejecutar el script de forma independiente por consola
+    run("google.com")

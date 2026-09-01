@@ -32,7 +32,12 @@ def ping_sweep(red):
         except Exception:
             pass
 
+def run(param):
+    """Función estándar requerida para la integración en la interfaz Tkinter."""
+    if not param:
+        param = "192.168.1.0/24"
+    ping_sweep(param)
+
 if __name__ == "__main__":
-    # Red local de prueba (pueden cambiarla por su propia subred /24)
-    red_objetivo = "192.168.1.0/24"
-    ping_sweep(red_objetivo)
+    # Permite seguir ejecutando el script de forma independiente por consola
+    run("192.168.1.0/24")

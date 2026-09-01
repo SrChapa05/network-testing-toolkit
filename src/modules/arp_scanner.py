@@ -22,14 +22,30 @@ def escanear_arp(ip_rango):
         
     return dispositivos
 
+def run(param):
+    """Función estándar requerida para la integración en la interfaz Tkinter."""
+    if not param:
+        param = "192.168.1.0/24"
+        
+    try:
+        activos = escanear_arp(param)
+        
+        print("\nDispositivos encontrados en la red:")
+        print("IP" + " " * 16 + "MAC Address")
+        print("-" * 35)
+        
+        if activos:
+            for d in activos:
+                print(f"{d['ip']:<18} {d['mac']}")
+        else:
+            print("No se encontraron dispositivos activos.")
+            
+    except PermissionError:
+        print("[!] Error: Los escaneos de capa 2 (Scapy) requieren privilegios de administrador/root.")
+    except Exception as e:
+        print(f"[!] Error inesperado durante el escaneo ARP: {e}")
+
 if __name__ == "__main__":
-    # Ajusten este rango según su red local (por ejemplo, "192.168.1.0/24")
+    # Permite seguir ejecutando el script de forma independiente por consola
     rango_red = "192.168.1.0/24"
-    
-    activos = escanear_arp(rango_red)
-    
-    print("\nDispositivos encontrados en la red:")
-    print("IP" + " " * 16 + "MAC Address")
-    print("-" * 35)
-    for d in activos:
-        print(f"{d['ip']:<18} {d['mac']}")
+    run(rango_red)

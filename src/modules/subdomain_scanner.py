@@ -26,7 +26,14 @@ def buscar_subdominios(dominio, lista_subdominios):
         except Exception:
             pass
 
-if __name__ == "__main__":
+def run(param):
+    """Función estándar requerida para la integración en la interfaz Tkinter."""
+    if not param:
+        param = "google.com"
+        
+    # Limpiamos el dominio ingresado por si incluye protocolos o barras
+    dominio = param.replace("https://", "").replace("http://", "").split("/")[0].strip()
+    
     # Diccionario básico de subdominios comunes
     subdominios_prueba = [
         "www",
@@ -41,7 +48,8 @@ if __name__ == "__main__":
         "vpn"
     ]
     
-    # Dominio objetivo de prueba (pueden cambiarlo por uno propio o autorizado)
-    dominio_objetivo = "google.com"
-    
-    buscar_subdominios(dominio_objetivo, subdominios_prueba)
+    buscar_subdominios(dominio, subdominios_prueba)
+
+if __name__ == "__main__":
+    # Permite seguir ejecutando el script de forma independiente por consola
+    run("google.com")

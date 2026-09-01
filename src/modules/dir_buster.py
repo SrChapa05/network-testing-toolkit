@@ -34,8 +34,12 @@ def buscar_directorios(url_base, lista_rutas):
         except Exception:
             pass
 
-if __name__ == "__main__":
-    # Una lista pequeña de directorios/archivos comunes para probar
+def run(param):
+    """Función estándar para la integración en la interfaz gráfica."""
+    if not param:
+        param = "http://testphp.vulnweb.com"
+        
+    # Diccionario de rutas comunes para probar
     diccionario_prueba = [
         "admin",
         "login",
@@ -46,7 +50,8 @@ if __name__ == "__main__":
         "config.json"
     ]
     
-    # Podemos usar un sitio web público de pruebas (ej. http://testphp.vulnweb.com o un servidor local)
-    url_objetivo = "http://testphp.vulnweb.com"
-    
-    buscar_directorios(url_objetivo, diccionario_prueba)
+    buscar_directorios(param, diccionario_prueba)
+
+if __name__ == "__main__":
+    # Permite seguir ejecutando el script de forma independiente por consola
+    run("http://testphp.vulnweb.com")

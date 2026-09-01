@@ -24,10 +24,29 @@ def obtener_banner(ip, puerto):
     except Exception as e:
         print(f"[-] Error al intentar obtener el banner: {e}")
 
-if __name__ == "__main__":
-    # Probamos con una IP pública o local y un puerto común (ej. puerto 80 o 21)
-    ip_objetivo = "scanme.nmap.org"  # O una IP local de prueba
-    puerto_objetivo = 80
+def run(param):
+    """Función estándar para la integración en la interfaz gráfica."""
+    if not param:
+        param = "scanme.nmap.org:80"
     
-    print(f"Iniciando Banner Grabbing en {ip_objetivo}:{puerto_objetivo}...")
-    obtener_banner(ip_objetivo, puerto_objetivo)
+    try:
+        # Permite aceptar formato IP:PUERTO o solo IP (asumiendo puerto 80)
+        if ":" in param:
+            ip, puerto_str = param.split(":", 1)
+            ip = ip.strip()
+            puerto = int(puerto_str.strip())
+        else:
+            ip = param.strip()
+            puerto = 80
+            
+        print(f"Iniciando Banner Grabbing en {ip}:{puerto}...")
+        obtener_banner(ip, puerto)
+        
+    except ValueError:
+        print("[!] Formato incorrecto. Usa IP:PUERTO (ej: 192.168.1.1:80)")
+    except Exception as e:
+        print(f"[!] Error inesperado: {e}")
+
+if __name__ == "__main__":
+    # Permite seguir ejecutando el script de forma independiente por consola
+    run("scanme.nmap.org:80")

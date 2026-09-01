@@ -20,6 +20,16 @@ def validar_ip(ip):
             return False
     return True
 
-if __name__ == "__main__":
+def run(param):
+    """Función estándar requerida para la integración en la interfaz Tkinter."""
     print(f"[+] IP Local detectada: {obtener_ip_local()}")
-    print(f"[+] ¿Es '192.168.1.1' válida?: {validar_ip('192.168.1.1')}")
+    
+    # Si el usuario proporciona una IP en la entrada de la interfaz, la validamos; si no, usamos una por defecto
+    ip_a_probar = param.strip() if param else "192.168.1.1"
+    es_valida = validar_ip(ip_a_probar)
+    
+    print(f"[+] ¿Es '{ip_a_probar}' una IP válida?: {es_valida}")
+
+if __name__ == "__main__":
+    # Permite seguir ejecutando el script de forma independiente por consola
+    run("192.168.1.1")

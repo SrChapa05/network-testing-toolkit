@@ -1,27 +1,29 @@
 import socket
 
-#Escaneo de puertos
-def scan_ports(host, ports):
+def run(host):
+    """Función principal que la interfaz llamará pasando el objetivo."""
+    ports = [21, 22, 23, 25, 53, 80, 110, 443, 8080]
+    
+    print(f"Escaneando puertos en {host}...")
     open_ports = []
+    
     for port in ports:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(1)
-        result = sock.connect_ex((host, port))
-        if result == 0:
-            open_ports.append(port)
-        sock.close()
-    return open_ports
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(1)
+            result = sock.connect_ex((host, port))
+            if result == 0:
+                print(f"[+] Puerto {port}: ABIERTO")
+                open_ports.append(port)
+            sock.close()
+        except Exception as e:
+            print(f"[!] Error en puerto {port}: {e}")
 
-#Prueba de la función de escaneo de puertos
-if __name__ == "__main__":
-    ip_objetivo = "192.168.1.1"
-    
-    puertos_a_escanear = [21, 22, 23, 25, 53, 80, 110, 443, 8080]
-    
-    print(f"Escaneando puertos en {ip_objetivo}...")
-    puertos_abiertos = scan_ports(ip_objetivo, puertos_a_escanear)
-    if puertos_abiertos:
-        print(f"Puertos abiertos encontrados: {puertos_abiertos}")
+    if open_ports:
+        print(f"\nResumen - Puertos abiertos encontrados: {open_ports}")
     else:
-        print("No se encontraron puertos abiertos.")
-        
+        print("\nNo se encontraron puertos abiertos.")
+
+# Opcional: Si aún quieres poder ejecutar este script individualmente por terminal
+if __name__ == "__main__":
+    run("192.168.1.1")

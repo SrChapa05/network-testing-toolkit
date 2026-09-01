@@ -49,8 +49,14 @@ def verificar_fortaleza_password(password):
         for falla in criterios_fallidos:
             print(f" - {falla}")
 
+def run(param):
+    """Función estándar requerida para la integración en la interfaz Tkinter."""
+    if not param:
+        param = "CyberSuite2026!"
+        
+    print(f"Probando con la clave: {param}")
+    verificar_fortaleza_password(param)
+
 if __name__ == "__main__":
-    # Prueba interactiva o con una cadena de ejemplo
-    password_prueba = "CyberSuite2026!"
-    print(f"Probando con la clave de ejemplo: {password_prueba}")
-    verificar_fortaleza_password(password_prueba)
+    # Permite ejecutar el script de forma independiente por consola
+    run("CyberSuite2026!")
